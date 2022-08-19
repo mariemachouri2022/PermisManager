@@ -1,18 +1,23 @@
-<div class="container-fluid m-3">
-    <div class="row row-cols-3 row-cols-md-4 row-cols-sm-12 d-flex justify-content-around gy-4 ">
-        @foreach ($permis as $permi)
-            <div class="card col m-b-2" style="width: 18rem;">
-                <img src="{{$permi->urlPoster}}" class="card-img-top" width="200" height="200" alt="{{$permi->Num}}">
-                <div class="card-body">
-                <h5 class="card-title">{{$permi->Num}}</h5>
-                <p class="card-text">{{$permi->Description}}</p>
-                <a href="{{route('events.show',[$permi])}}" class="btn btn-primary">Détails</a>
-                </div>
-            </div>
+<table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prenom</th>
+        <th scope="col">Num</th>
+        <th scope="col">ID</th>
+      </tr>
+    </thead>
+    <tbody>
+   @foreach ($permis as $permi)
+      <tr>
+         <td>{{$permi->Nom}}</td>
+         <td>{{$permi->Prenom}}</td>
+         <td>{{$permi->Num}}</td>
+         <td>{{$permi->NumId}}</td>
 
-        @endforeach
-    </div>
-</div>
+      </tr>
 
+  @endforeach
+    </tbody>
 
-{!!$permis->links()!!}
+  </table>

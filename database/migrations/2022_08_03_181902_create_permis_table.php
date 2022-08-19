@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('DateEdition');
             $table->date('DateDelivrance');
             $table->date('DateReussite');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+           // $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

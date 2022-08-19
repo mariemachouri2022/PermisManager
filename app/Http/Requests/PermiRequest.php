@@ -13,7 +13,7 @@ class PermiRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,17 @@ class PermiRequest extends FormRequest
     {
         return [
             //
+
+                'Num' =>['required', 'max:7'],
+                'NumId' => ['required','max:8'],
+                'Description'  => ['max:100'],
+                'Lieu' => ['required'],
+                'Nom' => ['required'],
+                'Prenom' => ['required'],
+                'DateEdition' => ['required'],
+                'DateDelivrance' => ['required'],
+                'DateReussite' => ['required']
+
         ];
     }
 }

@@ -22,20 +22,10 @@ class PermiController extends Controller
     public function index()
     {
         //
-        $permis=auth()->user()->permis()->paginate();
+    //    $permis=auth()->user()->permis()->paginate();
+    $permis=Permi::All();
         $data=[
-            'title' => $description="Mes permis",
-            'Num' => 'Numéro permis: '.$permis->Num,
-            'NumId' => 'Numéro carte d identité: '.$permis->NumId,
-            'Nom' => 'Nom: '.$permis->Nom,
-            'Prenom' => 'Prénom: '.$permis->Prenom,
-            'Lieu' => 'Lieu: '.$permis->Lieu,
-            'Description' => 'Description: '.$permis->Description,
-            'DateReussite' => 'Date de réussite : '.$permis->DateReussite,
-            'DateEdition' => 'Date d édition : '.$permis->DateEdition,
-            'DateDelivrance' => 'Date de délivrance: '.$permis->DateDelivrance,
-            'Date_Edition' => 'Date d édition : '.$permis->Date_Edition,
-            'heading' => $description ,
+
             'permis' => $permis
         ];
 
@@ -67,32 +57,28 @@ class PermiController extends Controller
      */
     public function store(PermiRequest $request)
     {
-        //
+
+     $user=User::find(1);
+
         DB::beginTransaction();
         try{
             $validated = $request->validated();
-            $poster=null;
-            $urlPoster=null;
 
-            if(($request->file('poster')!==null)&&($request->file('poster')->isValid())){
 
-                $ext=$request->file('poster')->extension();
-                $fileName=Str::uuid().'.'.$ext;
-                $poster=$request->file('poster')->storeAs('public/images',$fileName);
-                $urlPoster=env('APP_URL').Storage::url($poster);
-            }
 
-            Auth::user()->permis()->create([
+        $user->permis()->create([
                 'Num'=> $validated['Num'],
                 'NumId' => $validated['NumId'],
                 'Nom' => $validated['Nom'],
                 'Prenom' => $validated['Prenom'],
-                'Description' => $validated['Description'],
-                'poster' => $poster,
-                'urlPoster' => $urlPoster,
-                'DateReussite' => $validated['DateReussite'],
-                'DateDelivrance' => $validated['DateDelivrance'] ,
+                'Lieu' => $validated['Lieu'],
                 'DateEdition' => $validated['DateEdition'],
+                'DateDelivrance' => $validated['DateDelivrance'] ,
+                'DateReussite' => $validated['DateReussite'],
+                'Description' => $validated['Description'],
+
+
+
             ]);
 
         }catch(ValidationException $exception){
@@ -102,6 +88,7 @@ class PermiController extends Controller
         DB::commit();
 
         return redirect()->route('permis.index');
+
     }
 
     /**
