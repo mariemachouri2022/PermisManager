@@ -2,22 +2,9 @@
 
 @section('content')
     <a type="button" class="btn btn-primary" href="{{URL::previous()}}">Retour</a>
-    @if((Auth::check())&&(Auth::user()->id === $permi->user_id))
-        <a type="button" class="btn btn-primary" href="{{route('permis.edit',[$permi])}}">Modifier</a>
-        <form style="display: inline;" action="{{ route('permis.destroy', [$permi]) }}" method="post">
-             @csrf
-            @method('DELETE')
-             <button class="btn btn-danger" type="submit">
-                 Supprimer
-             </button>
-        </form>
-    @endif
 
     <div class="card m-3 " style="max-width: 80%; ">
         <div class="row g-0">
-        <div class="col-md-4">
-            <img src="{{$permi->urlPoster}}" class="img-fluid rounded-start" alt="{{$permi->nom}}">
-        </div>
         <div class="col-md-8">
             <div class="card-body">
             <h5 class="card-title">Numéro permis:{{$permi->Num}}</h5>

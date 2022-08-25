@@ -17,14 +17,13 @@ return new class extends Migration
             $table->id();
             $table->integer('Num');
             $table->integer('NumId');
-            $table->text('Description');
-            $table->string('Lieu');
             $table->string('Nom');
             $table->string('Prenom');
-            $table->date('DateEdition');
-            $table->date('DateDelivrance');
-            $table->date('DateReussite');
-           // $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('Lieu');
+            $table->string('DateEdition');
+            $table->string('DateDelivrance');
+            $table->string('DateReussite');
+            $table->text('Description');
             $table->timestamps();
         });
     }

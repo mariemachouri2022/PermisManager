@@ -24,17 +24,17 @@ class PermiRequest extends FormRequest
     public function rules()
     {
         return [
-            //
 
-                'Num' =>['required', 'max:7'],
-                'NumId' => ['required','max:8'],
-                'Description'  => ['max:100'],
-                'Lieu' => ['required'],
-                'Nom' => ['required'],
-                'Prenom' => ['required'],
-                'DateEdition' => ['required'],
-                'DateDelivrance' => ['required'],
-                'DateReussite' => ['required']
+
+                'Num' =>[ 'max:100'],
+                'NumId' =>[ 'max:100'],
+                'Lieu' => [ 'max:100'],
+                'Nom' => [ 'max:100'],
+                'Prenom' => [ 'max:100'],
+                'DateEdition' => [ 'max:100'],
+                'DateDelivrance' => [ 'max:100'],
+                'DateReussite' => ['required'],
+                'Description'=> [ 'max:100'],
 
         ];
     }
